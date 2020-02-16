@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+<hibernate-mapping package = "com.lavi.hibernate.model">
+<class name="Student" table="students" >
+<id name="sid" >
+<generator class="increment"/>
+</id>
+<property name="sname" />
+<property name="dob" />
+<property name="qualification" />
+<array name ="courses" table="courses" >
+<key column="sid"/>
+<index column="idx"/>
+<element column="course" type="string"/>
+</array>
+<list name="emails" table="emails">
+<key column="sid"/>
+<index column="idx"/>
+<element column="email" type="string"/>
+</list>
+<bag name="marks" table="marks">
+<key column="sid"/>
+<element column="marks" type="string"/>
+</bag>
+<set name="phones" table="phones">
+<key column="sid"/>
+<element  column="phone"  type="string"/>
+</set>
+<map name="refs" table="refs" cascade="all">
+<key column="sid"/>
+<index column="rname" type="string"/>
+<element column="phone" type="long"/>
+</map>
+</class>
+</hibernate-mapping>
